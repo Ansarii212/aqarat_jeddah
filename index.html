@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>عقارات جدة</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #e6f4ff;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    header {
+      background-image: linear-gradient(to right, #4da6ff, #3399ff);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+    .logout-btn {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      background: white;
+      color: #3399ff;
+      border: none;
+      padding: 0.3rem 0.7rem;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .logout-btn i {
+      margin-left: 5px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #333;
+    }
+    button {
+      padding: 0.7rem 1.5rem;
+      background: #3399ff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .login-box {
+      background: white;
+      padding: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+      border-radius: 8px;
+    }
+    .property {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid #3399ff;
+      border-radius: 8px;
+    }
+    .property img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      background: #f2f9ff;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .share-btn {
+      background: #3399ff;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      margin-left: 0.5rem;
+      float: left;
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .filter-bar select {
+      flex: 1;
+    }
+    .search-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .search-bar input {
+      flex: 2;
+    }
+    .search-bar button {
+      flex: 1;
+    }
+    .time-text {
+      font-size: 0.8rem;
+      color: gray;
+      margin-top: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>عقارات جدة</h1>
+  <button class="logout-btn" onclick="logout()">
+    <i>⎋</i>
+  </button>
+</header>
+
+<div class="container">
+  <div id="loginBox" class="login-box">
+    <h2>تسجيل الدخول برقم الجوال</h2>
+    <input type="text" id="phone" placeholder="مثال: 0555555555">
+    <button onclick="login()">تسجيل الدخول</button>
+    <p id="loginNote" style="color: red;"></p>
+    <div id="registerBox" style="display:none;">
+      <input type="text" id="newUserPhone" placeholder="أدخل رقمك للتسجيل">
+      <button onclick="register()">تسجيل</button>
+    </div>
+  </div>
+
+  <div id="filters" style="display:none;">
+    <div class="filter-bar">
+      <select onchange="filterProperties()" id="sortFilter">
+        <option value="new">الأحدث</option>
+        <option value="old">الأقدم</option>
+        <option value="high">الأغلى</option>
+        <option value="low">الأرخص</option>
+      </select>
+      <select onchange="filterProperties()" id="districtFilter">
+        <option value="">كل الأحياء</option>
+      <option>أبحر الشمالية</option>
+<option>أبحر الجنوبية</option>
+<option>الشراع</option>
+<option>المرجان</option>
+<option>البساتين</option>
+<option>المحمدية</option>
+<option>النزهة</option>
+<option>النهضة</option>
+<option>الزهراء</option>
+<option>الروضة</option>
+<option>السلامة</option>
+<option>الشاطئ</option>
+<option>الخالدية</option>
+<option>الحمراء الشمالية</option>
+<option>البوادي</option>
+<option>النعيم</option>
+<option>المروة</option>
+<option>الربوة</option>
+<option>النخيل</option>
+<option>الفهد</option>
+<option>الفيصلية</option>
+<option>الروابي</option>
+<option>النزهة الجديدة</option>
+<option>الياقوت</option>
+<option>الصواري</option>
+<option>العليا</option>
+<option>اللؤلؤة</option>
+<option>الحمدانية</option>
+<option>السامر</option>
+<option>الصفا</option>
+<option>بريمان</option>
+<option>الكورنيش الشمالي</option>
+<option>الأندلس</option>
+<option>العزيزية</option>
+<option>الرحاب</option>
+<option>الرويس</option>
+<option>بني مالك</option>
+<option>الجامعة</option>
+<option>مشرفة</option>
+<option>الثغر</option>
+<option>الصحيفة</option>
+<option>البغدادية الشرقية</option>
+<option>البغدادية الغربية</option>
+<option>الكندرة</option>
+<option>الشرفية</option>
+<option>المطار القديم</option>
+<option>العين العزيزية</option>
+<option>العمارية</option>
+<option>حارة البحر</option>
+<option>حارة الشام</option>
+<option>حارة المظلوم</option>
+<option>حارة اليمن</option>
+<option>البلد</option>
+<option>السبيل</option>
+<option>الهنداوية</option>
+<option>التوفيق</option>
+<option>غليل</option>
+<option>الثعالبة</option>
+<option>المحجر</option>
+<option>مدائن الفهد</option>
+<option>السالمية الشرقية</option>
+<option>النزلة اليمانية</option>
+<option>النزلة الشرقية</option>
+<option>المدينة الصناعية</option>
+<option>الإسكان الجنوبي</option>
+<option>القريات</option>
+<option>مدينة السلطان</option>
+<option>بترومين</option>
+<option>قويزة</option>
+<option>المنتزهات 1</option>
+<option>المنتزهات 2</option>
+<option>عبيد</option>
+<option>الواحة</option>
+<option>الأجواد</option>
+<option>الشروق</option>
+<option>النسيم</option>
+<option>السليمانية</option>
+<option>الفيحاء</option>
+<option>الورود</option>
+<option>الحرازات</option>
+<option>الحرازات الجديدة</option>
+<option>المنتزه الشرقي</option>
+<option>المنتزه الغربي</option>
+      </select>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="searchCode" placeholder="أدخل كود الإعلان">
+      <button onclick="searchByCode()">بحث</button>
+    </div>
+  </div>
+
+  <div id="listings"></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCr4T8GLRxtf_6LNrokjKvmBOwSkuGO5yQ",
+    authDomain: "hamsa-6009e.firebaseapp.com",
+    databaseURL: "https://hamsa-6009e-default-rtdb.firebaseio.com/",
+    projectId: "hamsa-6009e",
+    storageBucket: "hamsa-6009e.appspot.com",
+    messagingSenderId: "998163671039",
+    appId: "1:998163671039:web:d1930ea5b71a3a3fc729ca"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  let currentUser = localStorage.getItem("currentUser") || "";
+  let properties = [];
+
+  if (currentUser) {
+    document.querySelector(".logout-btn").style.display = "block";
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("filters").style.display = "block";
+    displayProperties();
+  }
+
+  function login() {
+    const phone = document.getElementById("phone").value.trim();
+    if (!phone) return;
+    db.ref("users").once("value", snapshot => {
+      const users = snapshot.val() || {};
+      if (users[phone]) {
+        currentUser = phone;
+        localStorage.setItem("currentUser", phone);
+        location.reload();
+      } else {
+        document.getElementById("loginNote").innerText = "ليس لديك حساب. رجاء التسجيل لتتمكن من الدخول";
+        document.getElementById("registerBox").style.display = "block";
+      }
+    });
+  }
+
+  function register() {
+    const phone = document.getElementById("newUserPhone").value.trim();
+    if (!phone) return;
+    db.ref("users/" + phone).set({ registered: true }, () => {
+      alert("تم التسجيل بنجاح");
+      location.reload();
+    });
+  }
+
+  function displayProperties() {
+    db.ref("properties").once("value", snapshot => {
+      properties = [];
+      snapshot.forEach(child => {
+        properties.push(child.val());
+      });
+      renderProperties();
+    });
+  }
+
+  function renderProperties(list = null) {
+    const sort = document.getElementById("sortFilter").value;
+    const district = document.getElementById("districtFilter").value;
+    let filtered = list || [...properties];
+
+    if (district) {
+      filtered = filtered.filter(p => p.district === district);
+    }
+
+    if (sort === "new") filtered.sort((a, b) => b.timestamp - a.timestamp);
+    if (sort === "old") filtered.sort((a, b) => a.timestamp - b.timestamp);
+    if (sort === "high") filtered.sort((a, b) => b.price - a.price);
+    if (sort === "low") filtered.sort((a, b) => a.price - b.price);
+
+    const listings = document.getElementById("listings");
+    listings.innerHTML = "";
+    filtered.forEach(prop => {
+      const timeAgo = getTimeAgo(prop.timestamp);
+      const div = document.createElement("div");
+      div.className = "property";
+      div.innerHTML = `
+        <img src="${prop.image}" alt="صورة العقار">
+        <h4>${prop.type}</h4>
+        <p><strong>الحي:</strong> ${prop.district}</p>
+        <p><strong>السعر:</strong> ${prop.price}</p>
+        <p><strong>الوصف:</strong> ${prop.desc}</p>
+        <p><strong>الكود:</strong> ${prop.code}
+          <button class="share-btn" onclick="share('${prop.code}', '${prop.desc}')">مشاركة</button>
+          <button class="share-btn delete" onclick="deleteProperty('${prop.code}')">حذف</button>
+        </p>
+        <div>
+          <button onclick="likeProperty('${prop.code}')" class="share-btn">إعجاب</button>
+          <span id="like-count-${prop.code}" style="margin-right: 10px;">0 إعجاب</span>
+        </div>
+        <div class="time-text">${timeAgo}</div>
+      `;
+      listings.appendChild(div);
+      updateLikeCount(prop.code);
+    });
+  }
+
+  function getTimeAgo(timestamp) {
+    const now = Date.now();
+    const diff = now - timestamp;
+    const minutes = Math.floor(diff / (1000 * 60));
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const weeks = Math.floor(days / 7);
+    const months = Math.floor(days / 30);
+    if (minutes < 1) return "الآن";
+    if (minutes < 60) return `منذ ${minutes} دقيقة`;
+    if (hours < 24) return `منذ ${hours} ساعة`;
+    if (days < 7) return `منذ ${days} يوم`;
+    if (weeks < 5) return `منذ ${weeks} أسبوع`;
+    return `منذ ${months} شهر`;
+  }
+
+  function share(code, desc) {
+    const text = `إعلان رقم ${code}: ${desc}\nرابط الصفحة: ${window.location.href}`;
+    navigator.share ? navigator.share({ text }) : alert("انسخ الرابط: " + text);
+  }
+        });
+      });
+    }
+  }
+
+  function likeProperty(code) {
+    const likeRef = db.ref("likes/" + code);
+    likeRef.transaction(current => (current || 0) + 1).then(() => {
+      updateLikeCount(code);
+    });
+  }
+
+  function updateLikeCount(code) {
+    db.ref("likes/" + code).on("value", snapshot => {
+      const count = snapshot.val() || 0;
+      document.getElementById("like-count-" + code).innerText = `${count} إعجاب`;
+    });
+  }
+
+  function logout() {
+    if (confirm("هل تريد تسجيل الخروج؟")) {
+      localStorage.removeItem("currentUser");
+      location.reload();
+    }
+  }
+
+  function filterProperties() {
+    renderProperties();
+  }
+
+  function searchByCode() {
+    const code = document.getElementById("searchCode").value.trim();
+    if (!code) return;
+    const found = properties.filter(p => p.code.toLowerCase() === code.toLowerCase());
+    if (found.length) {
+      renderProperties(found);
+    } else {
+      alert("لا يوجد إعلان بهذا الكود.");
+    }
+  }
+</script>
+</body>
+</html>
